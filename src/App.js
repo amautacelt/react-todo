@@ -11,10 +11,17 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
+  
+  // run once when app starts
+  useEffect(() => {
+    getLocalTodos();
+  }, []);
   // use effect
   useEffect(() => {
     filterHandler();
+    saveLocalTodos();
   }, [todos, status]);
+  
   // Functions
   const filterHandler = () => {
     switch(status){
